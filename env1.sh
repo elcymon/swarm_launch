@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. /opt/ros/indigo/env.sh
+. /home/turtlebot/catkin_ws/devel/env.sh
 export ROS_HOSTNAME=10.41.136.187
 export ROSLAUNCH_SSH_UNKNOWN=1
 export ROS_IP=10.41.136.187
