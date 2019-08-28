@@ -1,0 +1,11 @@
+<launch>
+    <machine name='nest' address='10.40.65.133' env-loader='envNest.sh' user='turtlebot'>
+    </machine>
+    <machine name='robot' address='10.40.245.143' env-loader='env1.sh' user='turtlebot'>
+    </machine>
+
+    <node pkg="rospy_tutorials" type="talker.py" name="nest" output="screen" required="true" machine='nest'>
+    </node>
+    <node pkg="rospy_tutorials" type="listener.py" name="robot" output="screen" required="true" machine='robot'>
+    </node>
+</launch>
