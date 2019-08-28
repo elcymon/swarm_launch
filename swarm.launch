@@ -1,7 +1,7 @@
 <launch>
-    <machine name='nest' address='10.41.67.2' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/envNest.sh' user='turtlebot' password='admin'>
+    <machine name='nest' address='10.41.67.2' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/envNest.sh' user='turtlebot'>
     </machine>
-    <machine name='robot' address='10.41.136.187' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env1.sh' user='turtlebot' password='admin'>
+    <machine name='robot' address='10.41.136.187' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env1.sh' user='turtlebot'>
     </machine>
 
     <node pkg="rospy_tutorials" type="talker.py" name="nest" output="screen" required="true" machine='nest'>
