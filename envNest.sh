@@ -1,5 +1,5 @@
 #!/bin/sh
-. /opt/ros/indigo/setup.sh
+. /opt/ros/indigo/env.sh
 export ROS_HOSTNAME=10.41.67.2
 export ROSLAUNCH_SSH_UNKNOWN=1
 export ROS_IP=10.41.67.2
