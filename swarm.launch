@@ -26,7 +26,7 @@
     </include> -->
     <include file="$(find nest_move)/launch/nest_move_machine.launch" >
         <arg name="nest" value="$(arg nest)" />
-        <arg name="nest_args" value="10 0 10 0 True"/>
+        <arg name="nest_args" value="$(arg nest) 10 0.1 1 1 True"/>
     </include>
 
     <!-- <include file="$(find my_data_logger)/launch/logger.launch" /> -->

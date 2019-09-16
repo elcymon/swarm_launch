@@ -7,5 +7,6 @@ export ROS_MASTER_URI=http://10.42.0.1:11311
 
 . /home/turtlebot/catkin_ws/devel/setup.sh
 
+roslaunch turtlebot_bringup minimal.launch &
 
 exec "$@"
