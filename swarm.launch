@@ -3,11 +3,14 @@
     
     </machine>
 
-    <machine name='robot' address='10.42.0.2' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env1.sh' user='turtlebot'>
+    <machine name='robot1' address='10.42.0.2' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env1.sh' user='turtlebot'>
     </machine>
-
-    <node pkg="rospy_tutorials" type="talker.py" name="x" output="screen" required="true" machine='nest'>
+    
+    <include file="$(find my_turtle)/launch/my_turtle.launch" />
+    <include file="$(find nest_move)/launch/nest_move.launch" />
+    <include file="$(find my_data_logger)/launch/logger.launch" />
+    <!-- <node pkg="rospy_tutorials" type="talker.py" name="nest" output="screen" required="true" machine='nest'>
     </node>
-    <node pkg="rospy_tutorials" type="listener.py" name="robot" output="screen" required="true" machine='robot'>
-    </node>
+    <node pkg="rospy_tutorials" type="listener.py" name="robot1" output="screen" required="true" machine='robot1'>
+    </node> -->
 </launch>

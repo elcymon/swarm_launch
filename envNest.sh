@@ -1,5 +1,4 @@
 #!/bin/sh
-echo "here I am"
 . /home/turtlebot/catkin_ws/devel/setup.sh
 export ROS_HOSTNAME=10.42.0.1
 export ROSLAUNCH_SSH_UNKNOWN=1
