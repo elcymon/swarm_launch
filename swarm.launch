@@ -1,16 +1,44 @@
 <launch>
-    <machine name='nest' address='10.42.0.1' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/envNest.sh' user='turtlebot'>
+    <arg name="logger" value="logger" />
+    <arg name="loggerAddress" value="10.42.0.1" />
+
+    <arg name="nest" value="nest" />
+    <arg name="nestAddress" value="10.42.0.2" />
+
+    <arg name="robot1" value="robot1" />
+    <arg name="robot1Address" value="10.42.0.3" />
+
+    <machine name='$(arg logger)' address='$(arg loggerAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg loggerAddress)' user='turtlebot'>
     
     </machine>
 
-    <machine name='robot1' address='10.42.0.2' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env1.sh' user='turtlebot'>
+    
+    <machine name='$(arg nest)' address='$(arg nestAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg nestAddress)' user='turtlebot'>
+    
+    </machine>
+
+    <machine name='$(arg robot1)' address='$(arg robot1Address)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg robot1Address)' user='turtlebot'>
+    
     </machine>
     
-    <include file="$(find my_turtle)/launch/my_turtle.launch" />
-    <include file="$(find nest_move)/launch/nest_move.launch" />
-    <include file="$(find my_data_logger)/launch/logger.launch" />
-    <!-- <node pkg="rospy_tutorials" type="talker.py" name="nest" output="screen" required="true" machine='nest'>
-    </node>
-    <node pkg="rospy_tutorials" type="listener.py" name="robot1" output="screen" required="true" machine='robot1'>
-    </node> -->
+    <!-- <include file="$(find my_turtle)/launch/my_turtle.launch" ns="robot1">
+
+    </include> -->
+    <include file="$(find nest_move)/launch/nest_move_machine.launch" >
+        <arg name="nest" value="$(arg nest)" />
+        <arg name="nest_args" value="10 0 10 0 True"/>
+    </include>
+
+    <!-- <include file="$(find my_data_logger)/launch/logger.launch" /> -->
+    <!-- <node pkg="rospy_tutorials" type="talker.py" name="$(arg talker)" output="screen" required="true" machine='$(arg talker)'> -->
+        <!-- <env name="ROS_MASTER_URI" value='http://10.42.0.1:11311' /> -->
+        <!-- <env name="ROS_HOSTNAME" value="10.42.0.1" />
+        <env name="ROS_IP" value="10.42.0.1" /> -->
+    <!-- </node> -->
+
+    <!-- <node pkg="rospy_tutorials" type="listener.py" name="$(arg listener)" output="screen" required="true" machine='$(arg listener)'> -->
+        <!-- <env name="ROS_MASTER_URI" value='http://10.42.0.1:11311' /> -->
+        <!-- <env name="ROS_HOSTNAME" value="10.42.0.2" />
+        <env name="ROS_IP" value="10.42.0.2" /> -->
+    <!-- </node> -->
 </launch>
