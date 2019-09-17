@@ -13,7 +13,7 @@
     </machine>
 
     
-    <machine name='$(arg nest)' address='$(arg nestAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg nestAddress) roslaunch bringup.launch id:=$(arg nest)' user='turtlebot'>
+    <machine name='$(arg nest)' address='$(arg nestAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg nestAddress) $(arg nest)' user='turtlebot'>
     
     </machine>
 

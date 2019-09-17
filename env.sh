@@ -6,5 +6,6 @@ shift
 export ROS_MASTER_URI=http://10.41.65.79:11311
 
 . /home/turtlebot/catkin_ws/devel/setup.sh
-
+roslaunch bringup.launch id:=$1
+shift
 exec "$@"
