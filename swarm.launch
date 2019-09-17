@@ -1,9 +1,9 @@
 <launch>
     <arg name="logger" value="logger" />
-    <arg name="loggerAddress" value="10.42.0.1" />
+    <arg name="loggerAddress" value="10.41.65.79" />
 
     <arg name="nest" value="nest" />
-    <arg name="nestAddress" value="10.42.0.2" />
+    <arg name="nestAddress" value="10.41.183.95" />
 
     <arg name="robot1" value="robot1" />
     <arg name="robot1Address" value="10.42.0.3" />
@@ -13,7 +13,7 @@
     </machine>
 
     
-    <machine name='$(arg nest)' address='$(arg nestAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg nestAddress)' user='turtlebot'>
+    <machine name='$(arg nest)' address='$(arg nestAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg nestAddress) $(arg nest)' user='turtlebot'>
     
     </machine>
 
@@ -26,7 +26,7 @@
     </include> -->
     <include file="$(find nest_move)/launch/nest_move_machine.launch" >
         <arg name="nest" value="$(arg nest)" />
-        <arg name="nest_args" value="$(arg nest) 10 0.1 1 1 True"/>
+        <arg name="nest_args" value="$(arg nest) 10 0 1 1 True"/>
     </include>
 
     <!-- <include file="$(find my_data_logger)/launch/logger.launch" /> -->
