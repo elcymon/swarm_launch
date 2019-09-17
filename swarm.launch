@@ -6,14 +6,30 @@
     <arg name="nestAddress" value="10.41.183.95" />
 
     <arg name="robot1" value="robot1" />
-    <arg name="robot1Address" value="10.42.0.3" />
+    <arg name="robot1Address" value="10.41.65.79" />
+
+    <arg name="poseOffset" value="(0,0,0)" />
+    <arg name="base_prob" value="0.0025" />
+    <arg name="prob_multiplier" value="10" />
+    <arg name="prob_divisor" value="10" />
+    <arg name="qSize" value="40" />
+    <arg name="velocity" value="0.1" />
+    <arg name="expDuration" value="600" />
+    <arg name="goalPose" value="(2,0,0)" />
+    <arg name="hear" value="True" />
+    <arg name="theta_A" value="10000" />
+    <arg name="experimentWaitDuration" value="1" />
+    <arg name="worldWidth" value="5" />
+    <arg name="worldLength" value="5" />
+    <arg name="centredOrigin" value="True" />
+    <arg name="robot_args" value="$(arg poseOffset) $(arg base_prob) $(arg prob_multiplier) $(arg prob_divisor) $(arg qSize) $(arg velocity) $(arg expDuration) $(arg goalPose) $(arg hear) $(arg theta_A) $(arg experimentWaitDuration) $(arg worldWidth) $(arg worldLength) $(arg centredOrigin)" />
 
     <machine name='$(arg logger)' address='$(arg loggerAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg loggerAddress)' user='turtlebot'>
     
     </machine>
 
     
-    <machine name='$(arg nest)' address='$(arg nestAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg nestAddress) $(arg nest)' user='turtlebot'>
+    <machine name='$(arg nest)' address='$(arg nestAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg nestAddress)' user='turtlebot'>
     
     </machine>
 
@@ -21,12 +37,13 @@
     
     </machine>
     
-    <!-- <include file="$(find my_turtle)/launch/my_turtle.launch" ns="robot1">
-
-    </include> -->
+    <include file="$(find my_turtle)/launch/my_turtle.launch" >
+        <arg name="id" value="$(arg robot1)" />
+        <arg name="robot_args" value="$(arg robot1) $(arg robot_args)" />
+    </include>
     <include file="$(find nest_move)/launch/nest_move_machine.launch" >
         <arg name="nest" value="$(arg nest)" />
-        <arg name="nest_args" value="$(arg nest) 10 0 1 1 True"/>
+        <arg name="nest_args" value="$(arg nest) 10 0.1 1 1 True"/>
     </include>
 
     <!-- <include file="$(find my_data_logger)/launch/logger.launch" /> -->
