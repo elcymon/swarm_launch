@@ -1,7 +1,7 @@
 <launch>
     <arg name="experimentWaitDuration" value="1" />
-    <arg name="expDuration" value="600" />
-    <arg name="hear" value="True" />
+    <arg name="expDuration" value="30" />
+    <arg name="hear" value="False" />
     
     <arg name="logger" value="logger" />
     <arg name="loggerAddress" value="10.41.65.79" />
@@ -10,21 +10,21 @@
     <arg name="nestAddress" value="10.41.183.95" />
     <arg name="nestVelocity" value="0" />
     <arg name="nestTravelDistance" value="1" />
-    <arg name="nest_args_data" value="$(arg nest) $(arg expDuration) $(arg nestVelocity) $(arg nestTravelDistance) $(arg hear)" />
+    <arg name="nest_args_data" value="$(arg nest) $(arg expDuration) $(arg nestVelocity) $(arg nestTravelDistance) $(arg experimentWaitDuration) $(arg hear)" />
 
     <arg name="robot1" value="robot1" />
-    <arg name="robot1Address" value="10.41.65.79" />
+    <arg name="robot1Address" value="10.41.126.21" />
 
     <arg name="poseOffset" value="(0,0,0)" />
     <arg name="base_prob" value="0.0025" />
-    <arg name="prob_multiplier" value="10" />
-    <arg name="prob_divisor" value="10" />
+    <arg name="prob_multiplier" value="1" />
+    <arg name="prob_divisor" value="1" />
     <arg name="qSize" value="40" />
     <arg name="velocity" value="0.1" />
-    <arg name="goalPose" value="(2,0,0)" />
+    <arg name="goalPose" value="(0,0,0)" />
     <arg name="theta_A" value="10000" />
-    <arg name="worldWidth" value="5" />
-    <arg name="worldLength" value="5" />
+    <arg name="worldWidth" value="2" />
+    <arg name="worldLength" value="2" />
     <arg name="centredOrigin" value="True" />
     <arg name="robot_args_data" value="$(arg poseOffset) $(arg base_prob) $(arg prob_multiplier) $(arg prob_divisor) $(arg qSize) $(arg velocity) $(arg expDuration) $(arg goalPose) $(arg hear) $(arg theta_A) $(arg experimentWaitDuration) $(arg worldWidth) $(arg worldLength) $(arg centredOrigin)" />
 
