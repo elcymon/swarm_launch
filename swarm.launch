@@ -1,9 +1,16 @@
 <launch>
+    <arg name="experimentWaitDuration" value="1" />
+    <arg name="expDuration" value="600" />
+    <arg name="hear" value="True" />
+    
     <arg name="logger" value="logger" />
     <arg name="loggerAddress" value="10.41.65.79" />
 
     <arg name="nest" value="nest" />
     <arg name="nestAddress" value="10.41.183.95" />
+    <arg name="nestVelocity" value="0" />
+    <arg name="nestTravelDistance" value="1" />
+    <arg name="nest_args_data" value="$(arg nest) $(arg expDuration) $(arg nestVelocity) $(arg nestTravelDistance) $(arg hear)" />
 
     <arg name="robot1" value="robot1" />
     <arg name="robot1Address" value="10.41.65.79" />
@@ -14,21 +21,14 @@
     <arg name="prob_divisor" value="10" />
     <arg name="qSize" value="40" />
     <arg name="velocity" value="0.1" />
-    <arg name="expDuration" value="600" />
     <arg name="goalPose" value="(2,0,0)" />
-    <arg name="hear" value="True" />
     <arg name="theta_A" value="10000" />
-    <arg name="experimentWaitDuration" value="1" />
     <arg name="worldWidth" value="5" />
     <arg name="worldLength" value="5" />
     <arg name="centredOrigin" value="True" />
-    <arg name="robot_args" value="$(arg poseOffset) $(arg base_prob) $(arg prob_multiplier) $(arg prob_divisor) $(arg qSize) $(arg velocity) $(arg expDuration) $(arg goalPose) $(arg hear) $(arg theta_A) $(arg experimentWaitDuration) $(arg worldWidth) $(arg worldLength) $(arg centredOrigin)" />
+    <arg name="robot_args_data" value="$(arg poseOffset) $(arg base_prob) $(arg prob_multiplier) $(arg prob_divisor) $(arg qSize) $(arg velocity) $(arg expDuration) $(arg goalPose) $(arg hear) $(arg theta_A) $(arg experimentWaitDuration) $(arg worldWidth) $(arg worldLength) $(arg centredOrigin)" />
 
-    <machine name='$(arg logger)' address='$(arg loggerAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg loggerAddress)' user='turtlebot'>
-    
-    </machine>
 
-    
     <machine name='$(arg nest)' address='$(arg nestAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg nestAddress)' user='turtlebot'>
     
     </machine>
@@ -39,23 +39,11 @@
     
     <include file="$(find my_turtle)/launch/my_turtle.launch" >
         <arg name="id" value="$(arg robot1)" />
-        <arg name="robot_args" value="$(arg robot1) $(arg robot_args)" />
+        <arg name="robot_args" value="$(arg robot1) $(arg robot_args_data)" />
     </include>
     <include file="$(find nest_move)/launch/nest_move_machine.launch" >
         <arg name="nest" value="$(arg nest)" />
-        <arg name="nest_args" value="$(arg nest) 10 0.1 1 1 True"/>
+        <arg name="nest_args" value="$(arg nest_args_data)"/>
     </include>
 
-    <!-- <include file="$(find my_data_logger)/launch/logger.launch" /> -->
-    <!-- <node pkg="rospy_tutorials" type="talker.py" name="$(arg talker)" output="screen" required="true" machine='$(arg talker)'> -->
-        <!-- <env name="ROS_MASTER_URI" value='http://10.42.0.1:11311' /> -->
-        <!-- <env name="ROS_HOSTNAME" value="10.42.0.1" />
-        <env name="ROS_IP" value="10.42.0.1" /> -->
-    <!-- </node> -->
-
-    <!-- <node pkg="rospy_tutorials" type="listener.py" name="$(arg listener)" output="screen" required="true" machine='$(arg listener)'> -->
-        <!-- <env name="ROS_MASTER_URI" value='http://10.42.0.1:11311' /> -->
-        <!-- <env name="ROS_HOSTNAME" value="10.42.0.2" />
-        <env name="ROS_IP" value="10.42.0.2" /> -->
-    <!-- </node> -->
 </launch>
