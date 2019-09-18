@@ -1,33 +1,115 @@
 <launch>
-    <arg name="experimentWaitDuration" value="1" />
-    <arg name="expDuration" value="300" />
-    <arg name="hear" value="True" />
-    
     <arg name="logger" value="logger" />
     <arg name="loggerAddress" value="10.42.0.1" />
-
-    <arg name="nest" value="nest" />
     <arg name="nestAddress" value="10.42.0.2" />
-    <arg name="nestVelocity" value="0.05" />
-    <arg name="nestTravelDistance" value="4" />
-    <arg name="nest_args_data" value="$(arg nest) $(arg expDuration) $(arg nestVelocity) $(arg nestTravelDistance) $(arg experimentWaitDuration) $(arg hear)" />
-
-    <arg name="robot1" value="robot1" />
     <arg name="robot1Address" value="10.42.0.3" />
 
+    <arg name="experimentWaitDuration" value="1" />
+    <arg name="nest" value="nest" />
+    <arg name="robot1" value="robot1" />
+    <arg name="velocity" value="0.1" />
+    <arg name="theta_A" value="10000" />
+    <arg name="centredOrigin" value="True" />
+
+    <!-- Experiment 1:
+    One robot needed (robot1)
+    Task: Perform Random Walk for 600 seconds and return to original pose
+        tolerance is within 10cm and 10 degrees of starting pose.
+    Parameters are as defined below: -->
+    <arg name="expDuration" value="600" />
+    <arg name="hear" value="False" />
+    
+    
+    <arg name="nestVelocity" value="0" />
+    <arg name="nestTravelDistance" value="0" />
+
+    
     <arg name="poseOffset" value="(0,0,0)" />
     <arg name="base_prob" value="0.0025" />
     <arg name="prob_multiplier" value="1" />
     <arg name="prob_divisor" value="1" />
-    <arg name="qSize" value="40" />
-    <arg name="velocity" value="0.1" />
+    <arg name="qSize" value="1" />
     <arg name="goalPose" value="(0,0,0)" />
-    <arg name="theta_A" value="10000" />
-    <arg name="worldWidth" value="4" />
-    <arg name="worldLength" value="4" />
-    <arg name="centredOrigin" value="True" />
-    <arg name="robot_args_data" value="$(arg poseOffset) $(arg base_prob) $(arg prob_multiplier) $(arg prob_divisor) $(arg qSize) $(arg velocity) $(arg expDuration) $(arg goalPose) $(arg hear) $(arg theta_A) $(arg experimentWaitDuration) $(arg worldWidth) $(arg worldLength) $(arg centredOrigin)" />
+    <arg name="worldWidth" value="8" />
+    <arg name="worldLength" value="8" />
+    
+    <!-- Experiment 2:
+    One mobile robot (robot1), one sound source (nest)
+    Task: Move in straight line and log sound data from microphone
+    Distance to move is 15m and qSize = 1.
+    1. Measure the ambient noise - DISABLE NEST MACHINE
+    2. Use speaker to broadcast white noise and listen to it from mobile robot -->
+    <!-- <arg name="expDuration" value="160" />
+    <arg name="hear" value="True" />
+    
+    
+    <arg name="nestVelocity" value="0" />
+    <arg name="nestTravelDistance" value="0" />
 
+    
+    <arg name="poseOffset" value="(0.3,0,0)" />
+    <arg name="base_prob" value="0" />
+    <arg name="prob_multiplier" value="1" />
+    <arg name="prob_divisor" value="1" />
+    <arg name="qSize" value="1" />
+    <arg name="goalPose" value="(15.3,0,0)" />
+    <arg name="worldWidth" value="40" />
+    <arg name="worldLength" value="40" /> -->
+    
+    <!-- Experiment 3:
+    One mobile robot (robot1), one sound source (nest)
+    Task: listen to sound from a stationary nest and use chemotaxis to locate the 
+    sound source. The experiment will be left to run for limited time (1000 seconds)
+    The result will be compared with Random Walk
+    1. Random walk - DISABLE NEST MACHINE, HEAR = FALSE, MULT = DIV = 1
+    2. chemotaxis/repAtt algorithm -->
+    <!-- <arg name="expDuration" value="1000" />
+    <arg name="hear" value="True" />
+    
+    
+    <arg name="nestVelocity" value="0" />
+    <arg name="nestTravelDistance" value="0" />
+
+    
+    <arg name="poseOffset" value="(1,0,0)" />
+    <arg name="base_prob" value="0.0025" />
+    <arg name="prob_multiplier" value="10" />
+    <arg name="prob_divisor" value="10" />
+    <arg name="qSize" value="40" />
+    <arg name="goalPose" value="(0,0,0)" />
+    <arg name="worldWidth" value="5" />
+    <arg name="worldLength" value="5" /> -->
+    
+    <!-- Experiment 4:
+    (multiple) mobile robot(s) and one sound source (nest)
+    Task: Multiple robots use chemotaxis to locate and follow a moving sound source (nest)
+    1. Random Walk - MULT = DIV = 1
+    2. chemotaxis/repAtt algorithm -->
+    <!-- <arg name="expDuration" value="1000" />
+    <arg name="hear" value="True" />
+    
+    
+    <arg name="nestVelocity" value="0.01" />
+    <arg name="nestTravelDistance" value="10" />
+
+    
+    <arg name="poseOffset" value="(-1,0,0)" />
+    <arg name="base_prob" value="0.0025" />
+    <arg name="prob_multiplier" value="10" />
+    <arg name="prob_divisor" value="10" />
+    <arg name="qSize" value="40" />
+    <arg name="goalPose" value="(0,0,0)" />
+    <arg name="worldWidth" value="5" />
+    <arg name="worldLength" value="40" /> -->
+    
+    <!-- Experiment 5:
+    Test the combination of multiple sound signal types i.e.
+    1. Superposition of multiple sound signals of same type (frequency range)
+    2. Working with both attraction and repulsion signals present within same experiment -->
+
+    <arg name="nest_args_data" value="$(arg nest) $(arg expDuration) $(arg nestVelocity) $(arg nestTravelDistance) $(arg experimentWaitDuration) $(arg hear)" />
+    <arg name="robot_args_data" value="$(arg poseOffset) $(arg base_prob) $(arg prob_multiplier) $(arg prob_divisor) $(arg qSize) $(arg velocity) $(arg expDuration) $(arg goalPose) $(arg hear) $(arg theta_A) $(arg experimentWaitDuration) $(arg worldWidth) $(arg worldLength) $(arg centredOrigin)" />
+    
 
     <machine name='$(arg nest)' address='$(arg nestAddress)' env-loader='/home/turtlebot/catkin_ws/src/swarm_launch/env.sh $(arg nestAddress) $(arg loggerAddress)' user='turtlebot'>
     
