@@ -1,19 +1,19 @@
 <launch>
     <arg name="experimentWaitDuration" value="1" />
-    <arg name="expDuration" value="600" />
-    <arg name="hear" value="False" />
+    <arg name="expDuration" value="300" />
+    <arg name="hear" value="True" />
     
     <arg name="logger" value="logger" />
-    <arg name="loggerAddress" value="10.41.65.79" />
+    <arg name="loggerAddress" value="10.42.0.1" />
 
     <arg name="nest" value="nest" />
-    <arg name="nestAddress" value="10.41.1.251" />
-    <arg name="nestVelocity" value="0.01" />
-    <arg name="nestTravelDistance" value="2" />
+    <arg name="nestAddress" value="10.42.0.2" />
+    <arg name="nestVelocity" value="0.05" />
+    <arg name="nestTravelDistance" value="4" />
     <arg name="nest_args_data" value="$(arg nest) $(arg expDuration) $(arg nestVelocity) $(arg nestTravelDistance) $(arg experimentWaitDuration) $(arg hear)" />
 
     <arg name="robot1" value="robot1" />
-    <arg name="robot1Address" value="10.41.124.64" />
+    <arg name="robot1Address" value="10.42.0.3" />
 
     <arg name="poseOffset" value="(0,0,0)" />
     <arg name="base_prob" value="0.0025" />
@@ -37,7 +37,7 @@
     
     </machine>
     
-    <include file="$(find my_turtle)/launch/my_turtle.launch" >
+    <include file="$(find my_turtle)/launch/my_turtle_machine.launch" >
         <arg name="id" value="$(arg robot1)" />
         <arg name="robot_args" value="$(arg robot1) $(arg robot_args_data)" />
     </include>
