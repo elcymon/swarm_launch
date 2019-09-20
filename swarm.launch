@@ -12,12 +12,14 @@
     <arg name="centredOrigin" value="True" />
 
     <!-- Experiment 1:
-    One robot needed (robot1)
+    One robot needed (robot1) DISABLE NEST MACHINE
     Task: Perform Random Walk for 600 seconds and return to original pose
         tolerance is within 10cm and 10 degrees of starting pose.
+        1. remain stationary and listen for 100 seconds: expDuration = 100, velocity = 0
+        2. move around for 600 seconds and go to goal: expDuration = 600, velocity = 0.1
     Parameters are as defined below: -->
-    <arg name="expDuration" value="600" />
-    <arg name="hear" value="False" />
+    <!-- <arg name="expDuration" value="600" />
+    <arg name="hear" value="True" />
     
     
     <arg name="nestVelocity" value="0" />
@@ -31,7 +33,7 @@
     <arg name="qSize" value="1" />
     <arg name="goalPose" value="(0,0,0)" />
     <arg name="worldWidth" value="8" />
-    <arg name="worldLength" value="8" />
+    <arg name="worldLength" value="8" /> -->
     
     <!-- Experiment 2:
     One mobile robot (robot1), one sound source (nest)
@@ -39,7 +41,7 @@
     Distance to move is 15m and qSize = 1.
     1. Measure the ambient noise - DISABLE NEST MACHINE
     2. Use speaker to broadcast white noise and listen to it from mobile robot -->
-    <!-- <arg name="expDuration" value="160" />
+    <arg name="expDuration" value="170" />
     <arg name="hear" value="True" />
     
     
@@ -54,7 +56,7 @@
     <arg name="qSize" value="1" />
     <arg name="goalPose" value="(15.3,0,0)" />
     <arg name="worldWidth" value="40" />
-    <arg name="worldLength" value="40" /> -->
+    <arg name="worldLength" value="40" />
     
     <!-- Experiment 3:
     One mobile robot (robot1), one sound source (nest)
