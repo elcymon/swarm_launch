@@ -11,7 +11,7 @@
     <arg name="theta_A" value="10000" />
     <arg name="centredOrigin" value="True" />
 
-    <!-- Experiment 1:
+    <!-- Experiment 1: Odometry and Ambient Noise Data
     One robot needed (robot1) DISABLE NEST MACHINE
     Task: Perform Random Walk for 600 seconds and return to original pose
         tolerance is within 10cm and 10 degrees of starting pose.
@@ -19,8 +19,7 @@
         2. move around for 600 seconds and go to goal: expDuration = 600, velocity = 0.1
     Parameters are as defined below: -->
     <!-- <arg name="expDuration" value="600" />
-    <arg name="hear" value="True" />
-    
+    <arg name="hear" value="500" />
     
     <arg name="nestVelocity" value="0" />
     <arg name="nestTravelDistance" value="0" />
@@ -32,17 +31,16 @@
     <arg name="prob_divisor" value="1" />
     <arg name="qSize" value="1" />
     <arg name="goalPose" value="(0,0,0)" />
-    <arg name="worldWidth" value="8" />
-    <arg name="worldLength" value="8" /> -->
+    <arg name="worldWidth" value="5" />
+    <arg name="worldLength" value="5" /> -->
     
-    <!-- Experiment 2:
+    <!-- Experiment 2: Sound modelling data
     One mobile robot (robot1), one sound source (nest)
     Task: Move in straight line and log sound data from microphone
     Distance to move is 15m and qSize = 1.
-    1. Measure the ambient noise - DISABLE NEST MACHINE
-    2. Use speaker to broadcast white noise and listen to it from mobile robot -->
-    <arg name="expDuration" value="170" />
-    <arg name="hear" value="True" />
+    1. Use speaker to broadcast white noise and listen to it from mobile robot -->
+    <!-- <arg name="expDuration" value="170" />
+    <arg name="hear" value="500" />
     
     
     <arg name="nestVelocity" value="0" />
@@ -56,7 +54,7 @@
     <arg name="qSize" value="1" />
     <arg name="goalPose" value="(15.3,0,0)" />
     <arg name="worldWidth" value="40" />
-    <arg name="worldLength" value="40" />
+    <arg name="worldLength" value="40" /> -->
     
     <!-- Experiment 3:
     One mobile robot (robot1), one sound source (nest)
@@ -65,22 +63,22 @@
     The result will be compared with Random Walk
     1. Random walk - DISABLE NEST MACHINE, HEAR = FALSE, MULT = DIV = 1
     2. chemotaxis/repAtt algorithm -->
-    <!-- <arg name="expDuration" value="1000" />
-    <arg name="hear" value="True" />
+    <arg name="expDuration" value="850" />
+    <arg name="hear" value="white" />
     
     
-    <arg name="nestVelocity" value="0" />
-    <arg name="nestTravelDistance" value="0" />
+    <arg name="nestVelocity" value="0.0125" />
+    <arg name="nestTravelDistance" value="10" />
 
     
     <arg name="poseOffset" value="(1,0,0)" />
     <arg name="base_prob" value="0.0025" />
-    <arg name="prob_multiplier" value="10" />
-    <arg name="prob_divisor" value="10" />
+    <arg name="prob_multiplier" value="1" />
+    <arg name="prob_divisor" value="1" />
     <arg name="qSize" value="40" />
     <arg name="goalPose" value="(0,0,0)" />
     <arg name="worldWidth" value="5" />
-    <arg name="worldLength" value="5" /> -->
+    <arg name="worldLength" value="5" />
     
     <!-- Experiment 4:
     (multiple) mobile robot(s) and one sound source (nest)
